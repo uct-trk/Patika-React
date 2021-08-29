@@ -24,11 +24,15 @@ const List = ({ contacts }) => {
         onChange={filteredContact}
         placeholder="Filter Contact"
       />
-      <ol>
+      <ol className="list">
         {filtered.map((contact, index) => (
-          <li key={index}>{contact.fullname}</li>
+          <li key={index}>
+              <span>{contact.fullname}</span>
+              <span>{contact.phone_number}</span>
+          </li>
         ))}
       </ol>
+      <p>Total Contacts: {filtered.length}</p>
     </div>
   );
 };
