@@ -1,6 +1,7 @@
 import React from "react";
 
 const Employee = ({ employees }) => {
+    console.log(typeof employees)
   return (
     <>
       {employees.map((employee) => (
