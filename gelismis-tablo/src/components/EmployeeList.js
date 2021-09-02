@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { EmployeeContext } from "../Context/EmployeeContext";
 import AddForm from "./AddForm";
@@ -18,6 +18,11 @@ const EmployeeList = () => {
   };
 
   console.log(typeof employees);
+
+  // employees te değişiklik olduğu zaman modal kapanacak
+  useEffect(() => {
+    handleClose()
+  }, [employees])
 
   return (
     <>
