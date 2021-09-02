@@ -170,3 +170,9 @@ table.table .avatar {
 .modal form label {
 	font-weight: normal;
 }
+.btn-act{
+	padding: 4px;
+}
+tr td:last-child{
+	display: flex;
+}

@@ -13,6 +13,7 @@ const EmployeeContextProvider = (props) => {
         { id: uuidv4(), name: 'Martin Blank', email: 'martinblank@mail.com', address: 'Via Monte Bianco 34, Turin, Italy', phone: '(480) 631-2097' }
     ])
 
+    // ekleme işlemi yapmak için
     const addEmployee = (name, email, address, phone) => {
         setEmployees([...employees, {
             id: uuidv4(),
@@ -20,11 +21,19 @@ const EmployeeContextProvider = (props) => {
         }])
     }
 
+    // silme işlemi yapmak için
+    const deleteEmployee = (id) => {
+        setEmployees(employees.filter(employee => employee.id !== id))
+        console.log("deleted")
+    }
+
+
     console.log(typeof employees)
     return (
-        <EmployeeContext.Provider value={{ employees, addEmployee }}>
+        <EmployeeContext.Provider value={{ employees, addEmployee, deleteEmployee }}>
             {props.children}
         </EmployeeContext.Provider>
     )
+
 }
 export default EmployeeContextProvider
