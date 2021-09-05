@@ -1,14 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Alert, Button, Modal } from "react-bootstrap";
 import { EmployeeContext } from "../Context/EmployeeContext";
 import AddForm from "./AddForm";
 
 import Employee from "./Employee";
 
 const EmployeeList = () => {
-  const { employees } = useContext(EmployeeContext);
+  const { employees, sortedEmployees } = useContext(EmployeeContext);
+  console.log(sortedEmployees);
 
   const [show, setShow] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleShow = () => {
     setShow(true);
@@ -17,12 +19,25 @@ const EmployeeList = () => {
     setShow(false);
   };
 
-  console.log(typeof employees);
+  const handleShowAlert = () => {
+    setShowAlert(true);
+  };
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
 
   // employees te değişiklik olduğu zaman modal kapanacak
   useEffect(() => {
-    handleClose()
-  }, [employees])
+    handleClose();
+
+    // modal kapandıktan sonra aşağıdaki fonksiyon devreye girecek
+    return () => {
+      handleShowAlert();
+      setTimeout(() => {
+        handleCloseAlert();
+      }, 3000);
+    };
+  }, [employees]);
 
   return (
     <>
@@ -45,6 +60,15 @@ const EmployeeList = () => {
           </div>
         </div>
       </div>
+
+      <Alert
+        show={showAlert}
+        variant="success"
+        onClose={() => setShowAlert(false)}
+      >
+        Employee List successfully updated
+      </Alert>
+
       <table className="table table-striped table-hover">
         <thead>
           <tr>
@@ -56,13 +80,11 @@ const EmployeeList = () => {
           </tr>
         </thead>
         <tbody>
-          {
-            employees.map((employee) => (
-              <tr key={employee.id}>
-                <Employee employee={employee} />
-              </tr>
-            ))
-          }
+          {sortedEmployees.map((employee) => (
+            <tr key={employee.id}>
+              <Employee employee={employee} />
+            </tr>
+          ))}
         </tbody>
       </table>
 
@@ -84,3 +106,5 @@ const EmployeeList = () => {
 };
 
 export default EmployeeList;
+
+// sort((a,b) => a.name.localeCompare(b.name))
