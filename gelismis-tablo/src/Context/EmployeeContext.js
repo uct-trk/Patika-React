@@ -27,10 +27,15 @@ const EmployeeContextProvider = (props) => {
         console.log("deleted")
     }
 
+    //edit işlemi yapmak için
+    const updateEmployee = (id, updatedEmploye) => {
+        setEmployees(employees.map((employee) => (employee.id === id ? updatedEmploye : employee)))
+    }
+
 
     console.log(typeof employees)
     return (
-        <EmployeeContext.Provider value={{ employees, addEmployee, deleteEmployee }}>
+        <EmployeeContext.Provider value={{ employees, addEmployee, deleteEmployee, updateEmployee }}>
             {props.children}
         </EmployeeContext.Provider>
     )
