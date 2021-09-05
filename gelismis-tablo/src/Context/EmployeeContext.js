@@ -33,12 +33,11 @@ const EmployeeContextProvider = (props) => {
     }
 
     // alfabeye göre sıralama
-    const sortedEmployees = employees.sort((a, b) => (a.name < b.name ? -1 : 1))
-
+    const sortedEmployees = employees.sort((a, b) => (a.name < b.name ? -1 : 1));
 
     console.log(typeof employees)
     return (
-        <EmployeeContext.Provider value={{ employees, addEmployee, deleteEmployee, updateEmployee, sortedEmployees }}>
+        <EmployeeContext.Provider value={{ addEmployee, deleteEmployee, updateEmployee, sortedEmployees }}>
             {props.children}
         </EmployeeContext.Provider>
     )
