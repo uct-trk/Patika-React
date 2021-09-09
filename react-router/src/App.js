@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import About from "./components/About";
 import Home from "./components/Home";
-import User from "./components/User";
 import Users from "./components/Users";
 function App() {
   return (
@@ -35,7 +34,6 @@ function App() {
           <About />
         </Route>
         <Route path="/users" component={Users}></Route>
-        <Route path="/user/:id" component={User}></Route>
       </Switch>
     </div>
   </Router>

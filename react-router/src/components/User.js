@@ -24,7 +24,7 @@ const User = () => {
             <h3>{user.email}</h3>
             <div>{user.website}</div>
 
-            <Link to={`/user/${parseInt(id) + 1}`}>Next User {+id + 1}</Link>
+            <Link to={`/users/${parseInt(id) + 1}`}>Next User {+id + 1}</Link>
         </div>
     )
 }
