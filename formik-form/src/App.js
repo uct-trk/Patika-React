@@ -1,4 +1,4 @@
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field } from 'formik';
 
 function App() {
   return (
@@ -15,9 +15,11 @@ function App() {
         alert(JSON.stringify(values, null, 2));
       }}
     >
-      <Form>
+     {
+       ({handleSubmit, handleChange}) => (
+        <form onSubmit={handleSubmit}>
         <label htmlFor="firstName">First Name</label>
-        <Field id="firstName" name="firstName" placeholder="Jane" />
+        <input onChange={handleChange} type="text" name="firstName"/>
         <br/>
         <br/>
 
@@ -35,7 +37,9 @@ function App() {
           type="email"
         />
         <button type="submit">Submit</button>
-      </Form>
+      </form>
+       )
+     }
     </Formik>
   </div>
   );
