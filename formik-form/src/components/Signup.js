@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import validations from './validations';
 
 const Signup = () => {
-    const { handleSubmit, values, handleChange } = useFormik({
+    const { handleSubmit, values, handleChange, errors, touched, handleBlur } = useFormik({
         initialValues: {
           email: "",
           password: "",
@@ -14,6 +14,8 @@ const Signup = () => {
         },
         validationSchema: validations
       });
+
+      console.log(errors)
     return (
         <div>
             <h1>Sign Up</h1>
@@ -43,7 +45,10 @@ const Signup = () => {
     type="email"
     onChange={handleChange}
     value={values.email}
+    onBlur={handleBlur}
   />
+
+  {errors.email && touched.email && <div>{errors.email}</div>}
   
   <br />
   <br />
@@ -56,7 +61,9 @@ const Signup = () => {
     type="password"
     onChange={handleChange}
     value={values.password}
+    onBlur={handleBlur}
   />
+  {errors.password && touched.password && <div>{errors.password}</div>}
 
   <br />
   <br />
@@ -69,7 +76,9 @@ const Signup = () => {
     type="password"
     onChange={handleChange}
     value={values.passwordConfirm}
+    onBlur={handleBlur}
   />
+  {errors.passwordConfirm && touched.passwordConfirm && <div>{errors.passwordConfirm}</div>}
  {/*  <br />
   <br />
   <br />
