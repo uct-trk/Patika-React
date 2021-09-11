@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import Header from './components/Header';
 
 function App() {
@@ -6,14 +6,16 @@ function App() {
   const [number, setNumber] = useState(0)
   const [text,setText] = useState("")
 
-  const data = useMemo(() => {
+ /*  const data = useMemo(() => {
     return calculate()
-  },[number])
+  },[number]) */
   
 
-  const increase = () => {
-    setNumber(number + 1)
-  }
+  const increase = useCallback(() => {
+    setNumber((prevState) => prevState + 1)
+  },[]) 
+  // eğer bir fonksiyon varsa ve herhangi bir child componente geçiyorsak tekrar tekrar render edilmesini istemiyorsak useCallback kullanılabilir
+
 
   const handleChange = (e) => {
     setText(e.target.value)
@@ -22,9 +24,9 @@ function App() {
 
   return (
     <div className="App">
-      <Header number={number > 5 ? number : 0} data={data}/>
+      <Header increase={increase}/>
       <h1>{number}</h1>
-      <button onClick={increase}>+</button>
+     
       <br />
       <br/>
       <input value={text} onChange={handleChange} type="text" />

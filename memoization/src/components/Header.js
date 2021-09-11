@@ -1,13 +1,12 @@
 import React from 'react'
 
-const Header = ({number, data}) => {
+const Header = ({ increase}) => {
     console.log("render edilme durumu")
     return (
         <div>
-            <h1>{number}</h1>
             Header
             <br/>
-            <div>{JSON.stringify(data)}</div>
+            <button onClick={increase}>+</button>
         </div>
     )
 }
