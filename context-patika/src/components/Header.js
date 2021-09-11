@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
-import ThemeContext from '../context/ThemeContext'
+import React from 'react'
+import {useTheme} from '../context/ThemeContext'
 
 const Header = () => {
 
-    const {theme} = useContext(ThemeContext)
+    const {theme} = useTheme()
     return (
         <div>
             Aktif Tema {theme}
