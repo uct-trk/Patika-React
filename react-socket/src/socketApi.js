@@ -15,3 +15,9 @@ export const send = (color) => {
     socket.emit('newColor', color);
 }
 
+export const subscripe = (cb) => {
+    socket.on('receive', (color) => {
+        console.log(color)
+        cb(color)
+    })
+}
