@@ -11,3 +11,7 @@ export const init = () => {
     socket.on("connect", () => console.log("sunucuya bağlantı başarıyla gerçekleşti"))
 }
 
+export const send = (color) => {
+    socket.emit('newColor', color);
+}
+
